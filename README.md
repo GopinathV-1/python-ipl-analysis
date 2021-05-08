@@ -34,7 +34,7 @@ pip install matplotlib
 
 ## Running the App
 
-To run this code you need to have to download ![dictionaries, matches](https://www.kaggle.com/manasgarg/ipl/version/5) and ![umpires](https://www.kaggle.com/subhodeepchandra/ipl-umpires-by-country) csv files and place these dataset in the same directory. If you want to **install and setup virtualenv** follow from **step 1** or if you want to **directly run it in editor** follow from **step2**.
+To run this code you need to have to download [dictionaries, matches](https://www.kaggle.com/manasgarg/ipl/version/5) and [umpires](https://www.kaggle.com/subhodeepchandra/ipl-umpires-by-country) csv files and place these dataset in the same directory. If you want to **install and setup virtualenv** follow from **step 1** or if you want to **directly run it in editor** follow from **step2**.
 ## step1
 ### Install the virtualenv package
 ```bash
