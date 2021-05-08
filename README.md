@@ -1,9 +1,10 @@
 # Dataproject :: python
-# IPL-ANALYSIS-Python
+
+## IPL-ANALYSIS-Python
 
 This repo consists of a source code of a python script to make specific anaylsis in IPL dataset using **Datastructure**.
 
-![IPL](pictures/IPL.peng)](https://en.wikipedia.org/wiki/Indian_Premier_League)
+![IPL](pictures/IPL.png)(https://en.wikipedia.org/wiki/Indian_Premier_League)
 
 ## How is it done?
 
@@ -57,23 +58,23 @@ $-> cd IPL-ANALYSIS-Python
 $ cd IPL-ANALYSIS-Python-> python3 total_runs.py
 
 ```
-![total_runs](pictures/.peng)]
+![total_runs](pictures/.peng)
 
 ```bash
 $ cd IPL-ANALYSIS-Python-> python3 rcb_top_batsman.py
 
 ```
-![rcb_top_batsman](pictures/rcb_top_batsman.png)]
+![rcb_top_batsman](pictures/rcb_top_batsman.png)
 ```bash
 $ cd IPL-ANALYSIS-Python-> python3 foreign_umpire.py
 
 ```
-![foreign_umpire](pictures/foreign_umpire.png)]
+![foreign_umpire](pictures/foreign_umpire.png)
 ```bash
 $ cd IPL-ANALYSIS-Python-> python3 total_matches_by_team.py
 
 ```
-![total_matches_by_team](pictures/total_matches_by_team.png)]
+![total_matches_by_team](pictures/total_matches_by_team.png)
 
 ### Deactivate the virtual environment
 if you have followed step1 use this command to get out of virtualenv
