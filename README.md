@@ -35,6 +35,9 @@ pip install matplotlib
 ## Running the App
 
 To run this code you need to have to download [dictionaries, matches](https://www.kaggle.com/manasgarg/ipl/version/5) and [umpires](https://www.kaggle.com/subhodeepchandra/ipl-umpires-by-country) csv files and place these dataset in the same directory. If you want to **install and setup virtualenv** follow from **step 1** or if you want to **directly run it in editor** follow from **step2**.
+
+#### open the terminal
+
 ## step1
 ### Install the virtualenv package
 ```bash
@@ -54,24 +57,24 @@ source mypython/bin/activate
 ## step2
   
 ```bash
-$-> cd IPL-ANALYSIS-Python
-$ cd IPL-ANALYSIS-Python-> python3 total_runs.py
+$-> cd dataproject-python
+$ cd dataproject-python-> python3 total_runs.py
 
 ```
 ![total_runs](pictures/total_runs.png)
 
 ```bash
-$ cd IPL-ANALYSIS-Python-> python3 rcb_top_batsman.py
+$ cd dataproject-python-> python3 rcb_top_batsman.py
 
 ```
 ![rcb_top_batsman](pictures/rcb_top_batsman.png)
 ```bash
-$ cd IPL-ANALYSIS-Python-> python3 foreign_umpire.py
+$ cd dataproject-python-> python3 foreign_umpire.py
 
 ```
 ![foreign_umpire](pictures/foreign_umpire.png)
 ```bash
-$ cd IPL-ANALYSIS-Python-> python3 total_matches_by_team.py
+$ cd dataproject-python-> python3 total_matches_by_team.py
 
 ```
 ![total_matches_by_team](pictures/total_matches_by_team.png)
