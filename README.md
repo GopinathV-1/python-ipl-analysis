@@ -58,7 +58,7 @@ $-> cd IPL-ANALYSIS-Python
 $ cd IPL-ANALYSIS-Python-> python3 total_runs.py
 
 ```
-![total_runs](pictures/total_runs.peng)
+![total_runs](pictures/total_runs.png)
 
 ```bash
 $ cd IPL-ANALYSIS-Python-> python3 rcb_top_batsman.py
