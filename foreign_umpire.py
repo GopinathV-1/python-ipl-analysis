@@ -2,7 +2,7 @@ import csv
 import matplotlib.pyplot as plt
 umpire = []
 # converting csv file to list
-with open('umpire.csv', 'r') as file:
+with open('umpires.csv', 'r') as file:
     reader = csv.reader(file)
     for row in reader:
         umpire.append(row)
