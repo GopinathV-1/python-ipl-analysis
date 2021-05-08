@@ -4,7 +4,7 @@
 
 This repo consists of a source code of a python script to make specific anaylsis in IPL dataset using **Datastructure**.
 
-![IPL](pictures/IPL.png)(https://en.wikipedia.org/wiki/Indian_Premier_League)
+[![IPL](pictures/IPL.png)](https://en.wikipedia.org/wiki/Indian_Premier_League)
 
 ## How is it done?
 
@@ -58,7 +58,7 @@ $-> cd IPL-ANALYSIS-Python
 $ cd IPL-ANALYSIS-Python-> python3 total_runs.py
 
 ```
-![total_runs](pictures/.peng)
+![total_runs](pictures/total_runs.peng)
 
 ```bash
 $ cd IPL-ANALYSIS-Python-> python3 rcb_top_batsman.py
