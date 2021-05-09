@@ -30,6 +30,7 @@ Before you begin playing with the source code you might need to install the foll
 
 ```bash
 pip install matplotlib
+sudo apt-get install python3-tk
 ```
 
 ## Running the App
