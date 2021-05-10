@@ -10,9 +10,9 @@ foreign_umpire = {}
 # counting umpires based on origin of country
 for row in range(1, len(umpire)):
     if foreign_umpire.get(umpire[row][0]) is None:
-        foreign_umpire[umpire[row][0]] = umpire[row][1]
+        foreign_umpire[umpire[row][0]] = umpire[row][1].strip()
     else:
-        foreign_umpire[umpire[row][0]] += umpire[row][1]
+        foreign_umpire[umpire[row][0]] += umpire[row][1].strip()
 umpire_count = {}
 for row in foreign_umpire.items():
     cou = row[1]
