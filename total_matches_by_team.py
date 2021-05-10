@@ -65,6 +65,8 @@ plt.bar(left, s_m[9], 0.4, bottom=b_m[8], color='cyan', label='RR')
 plt.bar(left, s_m[10], 0.4, bottom=b_m[9], color='gray', label='DC')
 plt.bar(left, s_m[11], 0.4, bottom=b_m[10], color='peru', label='KTK')
 plt.bar(left, s_m[12], 0.4, bottom=b_m[11], color='royalblue', label='PW')
+for a, b in zip(left, b_m[12]):
+    plt.text(-0.25+a, 2+b, str(b))
 plt.xlabel('Season')
 plt.ylabel('Matches Played by Team')
 plt.legend()

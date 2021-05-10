@@ -36,6 +36,8 @@ for row in range(len(ump_country)):
         color.append('green')
 # plotting bar graph
 plt.bar(left, ump_count, tick_label=ump_country, width=0.8, color=color)
+for a, b in zip(left, ump_count):
+    plt.text(-0.15+a, 0.1+b, str(b))
 plt.xlabel('Country')
 plt.ylabel('Umpire\'s count')
 plt.title('Foreign Umpire Analysis')

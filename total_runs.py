@@ -48,6 +48,8 @@ for col in run:
 left = range(1, len(team)+1)
 # plotting bar graph
 plt.bar(left, run, tick_label=team, width=0.8, color=color)
+for a, b in zip(left, run):
+    plt.text(-0.25+a, 125+b, str(b))
 plt.xlabel('Team')
 plt.ylabel('Total Runs Scored')
 plt.title('Run status')

@@ -35,6 +35,8 @@ for row in range(0, 10):
         color.append('green')
 # plotting bar graph
 plt.bar(left, runs, tick_label=batsman, width=0.8, color=color)
+for a, b in zip(left, runs):
+    plt.text(-0.25+a, 25+b, str(b))
 plt.xlabel('Batsman')
 plt.ylabel('Total Runs Scored')
 plt.title('Top RCB Batsman Run status')
