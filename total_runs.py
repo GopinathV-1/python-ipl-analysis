@@ -3,37 +3,43 @@ import matplotlib.pyplot as plt
 from collections import defaultdict
 
 
+def abbreviate_team_name(name):
+    '''making abbreviation names'''
+    split_name = name.split(' ')
+    short_name = [each[0] for each in split_name]
+    return ''.join(short_name)
+
+
 def plot():
     '''Plotting bar graph for total
        runs scored by each team'''
-    def short(name):
-        '''making abbreviation names'''
-        split_name = name.split(' ')
-        short_name = [each[0] for each in split_name]
-        return ''.join(short_name)
-    deliveries = []
-    # converting csv file to list
-    with open('deliveries.csv', 'r') as file:
-        deliveries = list(csv.reader(file))
+
+    # creating a dictionary of team and their score
     total_run = defaultdict(int)
-    for row in deliveries[1:]:
-        total_run[short(row[2])] += int(row[17])
-    team, run, color = [], [], []
-    for row in total_run.items():
-        team.append(row[0])
-        run.append(row[1])
+    with open('deliveries.csv', 'r') as file:
+        deliveries = csv.DictReader(file)
+        for row in deliveries:
+            total_run[abbreviate_team_name
+                      (row['batting_team'])] += int(row['total_runs'])
+
+    color = []
+    team = list(total_run.keys())
+    run = list(total_run.values())
+
     for col in run:
         if col <= 10000:
             color.append('red')
-        elif col > 10000 and col < 20000:
+        elif 10000 < col < 20000:
             color.append('blue')
         else:
             color.append('green')
-    left = list(range(1, len(team)+1))
+
     # plotting graph
-    plt.bar(left, run, tick_label=team, width=0.8, color=color)
+    left = list(range(1, len(team)+1))
     for a, b in zip(left, run):
         plt.text(-0.25+a, 125+b, str(b))
+
+    plt.bar(left, run, tick_label=team, width=0.8, color=color)
     plt.xlabel('Team')
     plt.ylabel('Total Runs Scored')
     plt.title('Run status')

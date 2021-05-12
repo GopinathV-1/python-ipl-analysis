@@ -6,32 +6,37 @@ from collections import defaultdict
 def plot():
     '''Plotting bar graph for top
        run scored RCB batsman'''
-    deliveries = []
-    # converting csv file to list
-    with open('deliveries.csv', 'r') as file:
-        deliveries = list(csv.reader(file))
+
+    # creating dictionary of RCB batsman and their scores
     individual_runs = defaultdict(int)
-    for row in deliveries[1:]:
-        if row[2] == 'Royal Challengers Bangalore':
-            individual_runs[row[6]] += int(row[17])
+    with open('deliveries.csv', 'r') as file:
+        deliveries = csv.DictReader(file)
+        for row in deliveries:
+            if row['batting_team'] == 'Royal Challengers Bangalore':
+                individual_runs[row['batsman']] += int(row['total_runs'])
+
+    # Descending sort of batsman based on their scores
     individual_runs = dict(sorted(individual_runs.items(),
                                   key=lambda kv: (kv[1], kv[0]), reverse=True))
-    batsman, runs, color = [], [], []
-    for row in list(individual_runs.items())[:10]:
-        batsman.append(row[0])
-        runs.append(row[1])
-    left = list(range(1, 11))
+
+    batsman = list(individual_runs.keys())[:10]
+    runs = list(individual_runs.values())[:10]
+    color = []
+
     for row in range(0, 10):
         if runs[row] <= 1000:
             color.append('red')
-        elif runs[row] > 1000 and runs[row] < 2000:
+        elif 1000 < runs[row] < 2000:
             color.append('blue')
         else:
             color.append('green')
+
     # plotting bar graph
-    plt.bar(left, runs, tick_label=batsman, width=0.8, color=color)
+    left = list(range(1, 11))
     for a, b in zip(left, runs):
         plt.text(-0.25+a, 25+b, str(b))
+
+    plt.bar(left, runs, tick_label=batsman, width=0.8, color=color)
     plt.xlabel('Batsman')
     plt.ylabel('Total Runs Scored')
     plt.title('Top RCB Batsman Run status')
