@@ -1,56 +1,44 @@
 import csv
 import matplotlib.pyplot as plt
+from collections import defaultdict
 
 
-# making abbreviation names
-def short(name):
-    split_name = name.split(' ')
-    short_name = [each[0] for each in split_name]
-    return ''.join(short_name)
+def plot():
+    '''Plotting bar graph for total
+       runs scored by each team'''
+    def short(name):
+        '''making abbreviation names'''
+        split_name = name.split(' ')
+        short_name = [each[0] for each in split_name]
+        return ''.join(short_name)
+    deliveries = []
+    # converting csv file to list
+    with open('deliveries.csv', 'r') as file:
+        deliveries = list(csv.reader(file))
+    total_run = defaultdict(int)
+    for row in deliveries[1:]:
+        total_run[short(row[2])] += int(row[17])
+    team, run, color = [], [], []
+    for row in total_run.items():
+        team.append(row[0])
+        run.append(row[1])
+    for col in run:
+        if col <= 10000:
+            color.append('red')
+        elif col > 10000 and col < 20000:
+            color.append('blue')
+        else:
+            color.append('green')
+    left = list(range(1, len(team)+1))
+    # plotting graph
+    plt.bar(left, run, tick_label=team, width=0.8, color=color)
+    for a, b in zip(left, run):
+        plt.text(-0.25+a, 125+b, str(b))
+    plt.xlabel('Team')
+    plt.ylabel('Total Runs Scored')
+    plt.title('Run status')
+    plt.show()
 
 
-total_runs = {}
-deliveries = []
-# converting csv file to list
-with open('deliveries.csv', 'r') as file:
-    reader = csv.reader(file)
-    for row in reader:
-        deliveries.append(row)
-# calculating total runs by each team
-for row in range(1, len(deliveries)):
-    if total_runs.get(deliveries[row][2]) is None:
-        total_runs[deliveries[row][2]] = int(deliveries[row][17])
-    else:
-        total_runs[deliveries[row][2]] += int(deliveries[row][17])
-team = []
-team_full = {}
-run = []
-team_name = {}
-team_matching = {}
-for row in total_runs.items():
-    name = short(row[0])
-    team_full[name] = row[0]
-    if team_matching.get(name) is None:
-        team_matching[name] = row[1]
-    else:
-        team_matching[name] += row[1]
-for row in team_matching.items():
-    team.append(row[0])
-    run.append(row[1])
-color = []
-for col in run:
-    if col <= 10000:
-        color.append('red')
-    elif col > 10000 and col < 20000:
-        color.append('blue')
-    else:
-        color.append('green')
-left = range(1, len(team)+1)
-# plotting bar graph
-plt.bar(left, run, tick_label=team, width=0.8, color=color)
-for a, b in zip(left, run):
-    plt.text(-0.25+a, 125+b, str(b))
-plt.xlabel('Team')
-plt.ylabel('Total Runs Scored')
-plt.title('Run status')
-plt.show()
+if __name__ == "__main__":
+    plot()
