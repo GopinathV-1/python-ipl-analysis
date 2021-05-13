@@ -15,25 +15,27 @@ def plot():
                 umpire_country.append(row[' country'].strip())
 
     # creating a dictionary of foreign umpire country and their count
-    umpire_country_count = Counter(umpire_country)
-    ump_country = list(umpire_country_count.keys())
-    ump_count = list(umpire_country_count.values())
+    foreign_umpire_country_count = Counter(umpire_country)
+    foreign_umpire_country_origin = list(foreign_umpire_country_count.keys())
+    umpire_count = list(foreign_umpire_country_count.values())
     color = []
 
-    for row in range(len(ump_country)):
-        if ump_count[row] <= 2:
+    for row in umpire_count:
+        if row <= 2:
             color.append('red')
-        elif 2 < ump_count[row] < 5:
+        elif 2 < row < 5:
             color.append('blue')
         else:
             color.append('green')
 
     # plotting bar graph
-    left = range(1, len(ump_count)+1)
-    for a, b in zip(left, ump_count):
+    graph_length = range(1, len(umpire_count)+1)
+    for a, b in zip(graph_length, umpire_count):
         plt.text(-0.15+a, 0.1+b, str(b))
 
-    plt.bar(left, ump_count, tick_label=ump_country, width=0.8, color=color)
+    plt.bar(graph_length, umpire_count,
+            tick_label=foreign_umpire_country_origin,
+            width=0.8, color=color)
     plt.xlabel('Country')
     plt.ylabel('Umpire\'s count')
     plt.title('Foreign Umpire Analysis')

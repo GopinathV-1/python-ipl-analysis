@@ -23,10 +23,10 @@ def plot():
                       (row['batting_team'])] += int(row['total_runs'])
 
     color = []
-    team = list(total_run.keys())
-    run = list(total_run.values())
+    team_name = list(total_run.keys())
+    runs_scored = list(total_run.values())
 
-    for col in run:
+    for col in runs_scored:
         if col <= 10000:
             color.append('red')
         elif 10000 < col < 20000:
@@ -35,11 +35,12 @@ def plot():
             color.append('green')
 
     # plotting graph
-    left = list(range(1, len(team)+1))
-    for a, b in zip(left, run):
+    graph_length = list(range(1, len(team_name)+1))
+    for a, b in zip(graph_length, runs_scored):
         plt.text(-0.25+a, 125+b, str(b))
 
-    plt.bar(left, run, tick_label=team, width=0.8, color=color)
+    plt.bar(graph_length, runs_scored, tick_label=team_name,
+            width=0.8, color=color)
     plt.xlabel('Team')
     plt.ylabel('Total Runs Scored')
     plt.title('Run status')

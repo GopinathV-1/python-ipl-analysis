@@ -14,7 +14,7 @@ def plot():
     '''Plotting stacked bar graph for
     total matches played by team by season'''
 
-    teams = defaultdict(lambda: defaultdict(int))
+    team_seasonal_matches = defaultdict(lambda: defaultdict(int))
     season = set()
 
     '''creating a dictionay of teams to a dictionay of
@@ -22,48 +22,53 @@ def plot():
     with open('matches.csv', 'r') as file:
         matches = csv.DictReader(file)
         for row in matches:
-            teams[abbreviate_team_name(row['team1'])][row['season']] += 1
-            teams[abbreviate_team_name(row['team2'])][row['season']] += 1
+            team_seasonal_matches[abbreviate_team_name(
+                                  row['team1'])][row['season']] += 1
+            team_seasonal_matches[abbreviate_team_name(
+                                  row['team2'])][row['season']] += 1
             season.add(int(row['season']))
         season = sorted(list(season))
 
     ''' initializing total matches as zero
         in non played season to all teams'''
-    for row in teams.keys():
+    for row in team_seasonal_matches.keys():
         for col in list(season):
-            teams[row][str(col)] = teams[row][str(col)]
-        teams[row] = dict(sorted(teams[row].items(),
-                          key=lambda x: (x[0], x[1])))
+            team_seasonal_matches[row][str(col)] = (team_seasonal_matches
+                                                    [row][str(col)])
+        team_seasonal_matches[row] = dict(sorted(team_seasonal_matches
+                                          [row].items(),
+                                          key=lambda x: (x[0], x[1])))
 
-    s_m = []
-    team = list(teams.keys())
-    for row in teams.items():
-        t = []
+    matches_matrix = []
+    team_names = list(team_seasonal_matches.keys())
+    for row in team_seasonal_matches.items():
+        temporary_list = []
         for col in row[1].items():
-            t.append(col[1])
-        s_m.append(t)
+            temporary_list.append(col[1])
+        matches_matrix.append(temporary_list)
 
-    b_m = []
-    for i, row in enumerate(s_m):
-        L = []
-        for j, col in enumerate(row):
-            if i == 0:
-                L.append(col)
+    prefix_sum_matrix = []
+    for index, row in enumerate(matches_matrix):
+        temporary_list = []
+        for j_index, col in enumerate(row):
+            if index == 0:
+                temporary_list.append(col)
             else:
-                L.append(b_m[i-1][j] + col)
-        b_m.append(L)
+                temporary_list.append(prefix_sum_matrix
+                                      [index-1][j_index] + col)
+        prefix_sum_matrix.append(temporary_list)
 
     # plotting stacked bar graph
-    for a, b in zip(season, b_m[12]):
+    for a, b in zip(season, prefix_sum_matrix[12]):
         plt.text(-0.25+a, 2+b, str(b))
 
     color = ['orange', 'red', 'blue', 'pink', 'darkblue', 'purple', 'black',
              'green', 'yellow', 'cyan', 'grey', 'peru', 'royalblue']
-    plt.bar(season, s_m[0], 0.4, tick_label=season,
-            color=color[0], label=team[0])
-    for i, row in enumerate(s_m[1:]):
-        plt.bar(season, row, 0.4, bottom=b_m[i], color=color[i+1],
-                label=team[i+1])
+    plt.bar(season, matches_matrix[0], 0.4, tick_label=season,
+            color=color[0], label=team_names[0])
+    for i, row in enumerate(matches_matrix[1:]):
+        plt.bar(season, row, 0.4, bottom=prefix_sum_matrix[i],
+                color=color[i+1], label=team_names[i+1])
 
     plt.xlabel('Season')
     plt.ylabel('Matches Played by Team')
